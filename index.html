@@ -83,21 +83,23 @@
     }
     .hero-text ul {
       list-style: none;
-      padding-right: 20px;
+      padding-right: 5px;
     }
     .hero-text ul li {
-      position: relative;
-      padding-right: 25px;
-      margin-bottom: 10px;
-    }
-    .hero-text ul li::before {
-      content: "\2022";
-      position: absolute;
-      right: 0;
-      color: #000;
-      font-size: 1.2em;
-      line-height: 1;
-    }
+  position: relative;
+  padding-right: 10px; /* تقليل المسافة بين النقطة والنص */
+  margin-bottom: 10px;
+}
+
+.hero-text ul li::before {
+  content: "\2022";
+  position: absolute;
+  right: 0;
+  color: #fff; /* تغيير لون النقطة إلى الأبيض */
+  font-size: 1.2em;
+  line-height: 1;
+}
+
 
     /* تصميم نافذة تسجيل الدخول والانتظار بشكل احترافي */
     .modal {
